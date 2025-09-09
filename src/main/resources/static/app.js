@@ -163,12 +163,11 @@ formulario.addEventListener('submit', function(event){
     }
 
     let promise;
-    if (Iid.value) { // Atualizar
+    if (Iid.value) {
         dadosAluno.id = Number(Iid.value);
-        // Recria o Blob com o ID
         formData.set('aluno', new Blob([JSON.stringify(dadosAluno)], { type: 'application/json' }));
         promise = salvar(formData, 'PUT', API + BASE);
-    } else { // Cadastrar
+    } else {
         promise = salvar(formData, 'POST', API + BASE + '/cadastrar');
     }
 
@@ -223,7 +222,7 @@ recarregarBtn.addEventListener('click', listar);
 imageInput.addEventListener('change', e => handleImageSelect(e.target.files[0]));
 removeImageBtn.addEventListener('click', () => {
     limparPreviewImagem();
-    // Se estiver editando, pergunta se quer remover do servidor também
+
     if(Iid.value){
         if(confirm("Deseja remover a imagem salva deste aluno também?")){
             removerImagemAluno(Iid.value)
