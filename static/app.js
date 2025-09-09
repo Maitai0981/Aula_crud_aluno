@@ -156,7 +156,7 @@ formulario.addEventListener('submit', function(event){
     }
 
     const formData = new FormData();
-    formData.append('aluno', new Blob([JSON.stringify(dadosAluno)], { type: 'application/json' }));
+    formData.append('aluno', JSON.stringify(dadosAluno));
 
     if (imageInput.files[0]) {
         formData.append('imagem', imageInput.files[0]);
@@ -165,7 +165,7 @@ formulario.addEventListener('submit', function(event){
     let promise;
     if (Iid.value) {
         dadosAluno.id = Number(Iid.value);
-        formData.set('aluno', new Blob([JSON.stringify(dadosAluno)], { type: 'application/json' }));
+        formData.set('aluno', JSON.stringify(dadosAluno));
         promise = salvar(formData, 'PUT', API + BASE);
     } else {
         promise = salvar(formData, 'POST', API + BASE + '/cadastrar');
